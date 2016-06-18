@@ -10,13 +10,20 @@ const AppContainer = React.createClass({
     },
     render() {
         return (
-            <div className="keg-container container">
-                <div className="title center-align">
-                    NC <br/> Keg-o-meter
+            <div className="app-wrapper container">
+                <div className="title row center-align">
+
+                    <div className="col s2 offset-s3 logo">
+                        <img className="responsive-img" src="https://pbs.twimg.com/media/CD3-iUqWEAAVBxV.jpg:large"/>
+                    </div>
+                    <div className = "col s4 titleText">
+                        <div className = "companyName" >NC</div>
+                        <div className = "heading">Keg-o-meter</div>
+                    </div>
                 </div>
                 <div className="row">
-                    <KegContainer guageValue = {50.6} guageID = "guageLeft"/>
-                    <KegContainer guageValue = {40.6} guageID = "guageRight"/>
+                    <KegContainer gaugeValue={50.6} gaugeID="gaugeLeft"/>
+                    <KegContainer gaugeValue={40.6} gaugeID="gaugeRight"/>
                 </div>
             </div>
         );
