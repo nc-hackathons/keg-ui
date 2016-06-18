@@ -11,15 +11,7 @@ const Pour = React.createClass({
       volumePoured: 0,
     };
   },
-  advance() {
-    console.log('advance');
-  },
-  componentDidMount() {
-    console.log('mounting component');
-  },
-  componentWillUnmount() {
-    console.log('unmounting component');
-  },
+
   render() {
     return (
       <div className="pour">
