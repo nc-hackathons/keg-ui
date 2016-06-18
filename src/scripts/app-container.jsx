@@ -18,7 +18,7 @@ const AppContainer = React.createClass({
     },
 
     componentDidMount() {
-        setInterval(function () {
+        this.intervalID = setInterval(function () {
             this.setState({
                 remValue1: this.state.remValue1 + 1,
                 remValue2: this.state.remValue2 - 1
@@ -27,6 +27,7 @@ const AppContainer = React.createClass({
     },
 
     componentWillUnmount() {
+        clearInterval(this.intervalID);
     },
     render() {
         return (
