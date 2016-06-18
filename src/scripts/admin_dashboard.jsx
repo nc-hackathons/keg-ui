@@ -3,10 +3,12 @@ const ReactDOM = require('react-dom');
 const axios = require('axios');
 
 const AdminDashboard = React.createClass({
-  propTypes: {
-    beers: React.PropTypes.array,
-    keg: React.PropTypes.object,
-    beer: React.PropTypes.object
+  getInitialState: function() {
+    return {
+      beers: [],
+      beer: { id: undefined, name: undefined },
+      keg: { id: undefined }
+    };
   },
 
   loadDataFromServer : function() {
@@ -21,26 +23,28 @@ const AdminDashboard = React.createClass({
     axios.post('http://10.5.50.138:4567/batches', {
       batch: {
         beer: {
-          id: this.props.beer.id,
-          name: this.props.beer.name
+          id: this.state.beer.id,
+          name: this.state.beer.name
         },
         keg: {
-          id: this.props.keg.id
+          id: this.state.keg.id
         }
       }
     }).then(function (response) {
       console.log(response);
+
     }).catch(function (response) {
       console.log(response);
     });
   },
 
-  getDefaultProps() {
-    return {
-      beers: [],
-      keg: {},
-      beer: {}
-    };
+  handleBeerChange: function(e) {
+    console.log(e.target.value);
+    this.setState({ beer: { name: e.target.value } });
+  },
+
+  handleKegChange: function(e) {
+    this.setState({ keg: { id: e.target.value } });
   },
 
   componentDidMount: function() {
@@ -53,16 +57,19 @@ const AdminDashboard = React.createClass({
         This is the Admin Dashboard
         <form className="admin_form">
           <select>
+
           </select>
           <label>beer</label>
           <input
             type="text"
-            value={this.props.beer.name}
+            value={this.state.beer.name || ''}
+            onChange={this.handleBeerChange}
           />
           <label>keg</label>
           <input
             type="text"
-            value={this.props.keg.id}
+            value={this.state.keg.id || ''}
+            onChange={this.handleKegChange}
           />
           <input type="submit" value="Post" />
         </form>
