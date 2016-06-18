@@ -78,7 +78,7 @@ const BeerEntry = React.createClass({
           <div className="card blue-grey darken-1">
             <div className="card-content white-text">
               <span className="card-title">{this.props.name}</span>
-              <p>{this.props.id}</p>
+              <p>{this.props.description}</p>
             </div>
             <div className="card-action">
               <a className="waves-effect waves-light btn" onClick={this.onClickFunction}>Vote for this beer</a>
@@ -92,7 +92,7 @@ const BeerEntry = React.createClass({
 
 const AddNewKeg = React.createClass({
   getInitialState: function() {
-    return {beerName: '', kegVolume: ''};
+    return {beerName: '', kegId: ''};
   },
   submitNewKeg: function(){
     console.log(this.state.beerName);
@@ -102,8 +102,8 @@ const AddNewKeg = React.createClass({
   handleBeerNameChange: function(e){
     this.setState({beerName: e.target.value});
   },
-  handleVolumeChange: function(e){
-    this.setState({kegVolume: e.target.value});
+  handleKegIdChange: function(e){
+    this.setState({kegVolume: e.target.kegId});
   },
   render: function(){
     return (
@@ -122,13 +122,13 @@ const AddNewKeg = React.createClass({
              </div>
              <div className="input-field col s6">
                <input
-                 value={this.state.kegVolume}
-                 onChange={this.handleVolumeChange}
+                 value={this.state.kegId}
+                 onChange={this.handleKegIdChange}
                  id="volume"
                  type="text"
                  className="validate"
                />
-               <label for="volume">Keg Volume</label>
+             <label for="volume">Left or Right Keg</label>
             </div>
            </div>
            <button className="btn waves-effect waves-light" type="submit" name="action">
@@ -145,19 +145,21 @@ const BeerList = React.createClass({
   render: function() {
     let data = [
       {
-        id: "1",
+        description: "A standard cheap beer",
         name: "Miller Lite",
-        key: "nice"
+        key: "nice",
+        id: "1"
       },
       {
-        id: "2",
+        description: "Great for a hot day",
         name: "PBR",
-        key: "nice2"
+        key: "nice2",
+        id: "2"
       }
     ]
     const beerNodes = data.map(function(beer) {
       return (
-        <BeerEntry name={beer.name} id={beer.id} key={beer.id} />
+        <BeerEntry name={beer.name} description={beer.description} key={beer.id} />
       );
     });
     return (
