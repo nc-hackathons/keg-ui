@@ -1,9 +1,14 @@
 const React = require('react');
 
 const Pour = React.createClass({
-  getInitialState() {
+  propTypes: {
+    volumePoured:  React.PropTypes.number,
+    createdAt:     React.PropTypes.string
+  },
+
+  getDefaultProps() {
     return {
-      attr: 0,
+      volumePoured: 0,
     };
   },
   advance() {
@@ -17,8 +22,9 @@ const Pour = React.createClass({
   },
   render() {
     return (
-      <div className="keg-container">
-        TEST
+      <div className="pour">
+        Volume: {this.props.volumePoured}<br/>
+        Created at: {this.props.createdAt}
       </div>
     );
   }

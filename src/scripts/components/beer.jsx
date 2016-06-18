@@ -1,11 +1,11 @@
 const React = require('react');
 
 const Beer = React.createClass({
-  getInitialState() {
-    return {
-      attr: 0,
-    };
+  propTypes: {
+    id:   React.PropTypes.number,
+    name: React.PropTypes.string
   },
+
   advance() {
     console.log('advance');
   },
@@ -17,8 +17,8 @@ const Beer = React.createClass({
   },
   render() {
     return (
-      <div className="keg-container">
-        TEST
+      <div className="beer">
+        {this.props.name}
       </div>
     );
   }
