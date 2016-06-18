@@ -7,10 +7,11 @@ var Router = require('react-router').Router
 var Route = require('react-router').Route
 var Link = require('react-router').Link
 
+
 ReactDOM.render((
     <Router>
       <Route path="/" component={KegContainer} />
       <Route path="admin_dashboard" component={AdminDashboard} />
     </Router>),
-  document.getElementById('main')
+  document.getElementById('view')
 );
