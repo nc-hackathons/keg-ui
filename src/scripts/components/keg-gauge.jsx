@@ -25,7 +25,10 @@ const KegGuage = React.createClass({
 
         var config1 = liquidFillGaugeDefaultSettings();
         var config = _.assign(config1, beerGaugeConfigPlus);
-        var gauge3 = loadLiquidFillGauge(this.props.gaugeID, this.props.gaugeValue, config);
+        this.gauge = loadLiquidFillGauge(this.props.gaugeID, this.props.gaugeValue, config);
+    },
+    componentDidUpdate(){
+        this.gauge.update(this.props.gaugeValue);
     },
     componentWillUnmount() {
         console.log('unmounting component');
