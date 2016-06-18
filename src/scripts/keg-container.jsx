@@ -3,14 +3,7 @@ const KegGuage = require('./keg-guage.jsx');
 
 
 const KegContainer = React.createClass({
-    getInitialState() {
-        return {
-            attr: 0,
-        };
-    },
-    advance() {
-        console.log('advance');
-    },
+
     componentDidMount() {
     },
     componentWillUnmount() {
