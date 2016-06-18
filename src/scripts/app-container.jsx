@@ -4,21 +4,24 @@ const KegContainer = require('./components/keg-container.jsx');
 const AppContainer = React.createClass({
   getInitialState() {
     return ({
-      gaugeValue1: 20,
-      gaugeValue2: 35
+      kegs: []
     });
   },
 
+  fetchData() {
+    // TODO: Call API
+    /*this.setState({
+      kegs:
+    });*/
+  },
+
   componentWillUnmount() {
-    // TODO: Fetch kegs from server
+    fetchData();
   },
 
   componentDidMount() {
     setInterval(function() {
-      this.setState({
-        gaugeValue1: this.state.gaugeValue1 + 1,
-        gaugeValue2: this.state.gaugeValue2 + 1
-      });
+      fetchData();
     }.bind(this), 2000);
   },
 
@@ -29,10 +32,14 @@ const AppContainer = React.createClass({
           NC <br/> Keg-o-meter
         </div>
         <div className="row">
-          <KegContainer guageValue = {this.state.gaugeValue1} guageID = "guageLeft"/>
-          <KegContainer guageValue = {this.state.gaugeValue2} guageID = "guageRight"/>
+          {
+            this.state.kegs.map((keg, i) => {
+              <KegContainer remainingVolume={} totalVolume={} isPouring={} beer={} pours={} id={ i } />
+            })
+          }
         </div>
         <div className="row">
+          <PourTracker />
         </div>
       </div>
     );
