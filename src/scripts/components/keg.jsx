@@ -1,24 +1,22 @@
 const React = require('react');
+const Batch = require('./batch.jsx');
 
 const Keg = React.createClass({
-  getInitialState() {
+  propTypes: {
+    name:           React.PropTypes.string,
+    startingVolume: React.PropTypes.number.isRequired // millileters
+  },
+
+  getDefaultProps() {
     return {
-      attr: 0,
+      startingVolume: 0
     };
   },
-  advance() {
-    console.log('advance');
-  },
-  componentDidMount() {
-    console.log('mounting component');
-  },
-  componentWillUnmount() {
-    console.log('unmounting component');
-  },
+
   render() {
     return (
-      <div className="keg-container">
-        TEST
+      <div className="keg">
+        Starting Volume: { this.props.startingVolume } ml
       </div>
     );
   }

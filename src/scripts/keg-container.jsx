@@ -1,4 +1,5 @@
 const React = require('react');
+const Keg = require('./components/keg.jsx');
 
 const KegContainer = React.createClass({
   getInitialState() {
@@ -18,7 +19,8 @@ const KegContainer = React.createClass({
   render() {
     return (
       <div className="keg-container">
-        TEST
+        <Keg />
+        <Keg />
       </div>
     );
   }

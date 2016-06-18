@@ -1,24 +1,18 @@
 const React = require('react');
 
 const Batch = React.createClass({
-  getInitialState() {
-    return {
-      attr: 0,
-    };
+  propTypes: {
+    volumePoured: React.PropTypes.number
   },
-  advance() {
-    console.log('advance');
+
+  componentWillMount() {
+    // calculate volume poured
   },
-  componentDidMount() {
-    console.log('mounting component');
-  },
-  componentWillUnmount() {
-    console.log('unmounting component');
-  },
+
   render() {
     return (
-      <div className="keg-container">
-        TEST
+      <div className="batch">
+        Volume Poured: { this.props.volumePoured } ml
       </div>
     );
   }
