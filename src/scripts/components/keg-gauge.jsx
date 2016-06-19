@@ -49,7 +49,7 @@ const KegGuage = React.createClass({
     render() {
         return (
             <div className="gaugeContainer">
-                <img src={"./../../media/keg.png"}/>
+              <img src={"./media/keg.png"}/>
                 <svg className="gauge" id={this.props.gaugeID} width="150%" height="250"></svg>
             </div>
         );
