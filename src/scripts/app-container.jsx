@@ -21,9 +21,10 @@ const AppContainer = React.createClass({
         this.intervalID = setInterval(function () {
             this.setState({
                 remValue1: this.state.remValue1 + 1,
-                remValue2: this.state.remValue2 - 1
+                remValue2: this.state.remValue2 - 1,
+                isPouring1: !this.state.isPouring1
             });
-        }.bind(this), 1500);
+        }.bind(this), 2000);
     },
 
     componentWillUnmount() {
