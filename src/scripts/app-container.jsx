@@ -1,5 +1,7 @@
 const React = require('react');
 const KegContainer = require('./components/keg-container.jsx');
+const ApiKeg = require('./ApiKeg.jsx');
+const axios = require('axios');
 
 const AppContainer = React.createClass({
     getInitialState() {
@@ -18,13 +20,36 @@ const AppContainer = React.createClass({
     },
 
     componentDidMount() {
-        this.intervalID = setInterval(function () {
+        ApiKeg.loadAll().then((kegs) => {
+            const totalVolume1 = kegs[0].total_volume;
+            const totalVolume2 = kegs[1].total_volume;
+
             this.setState({
-                remValue1: this.state.remValue1 + 1,
-                remValue2: this.state.remValue2 - 1,
-                isPouring1: !this.state.isPouring1
+                totalValue1: totalVolume1,
+                totalValue2: totalVolume2,
+                remValue1: kegs[0].batch.volume_remaining,
+                remValue2: kegs[1].batch.volume_remaining
             });
-        }.bind(this), 2000);
+        });
+
+        this.intervalID = setInterval(() => {
+            const that = this
+            const messageEndpoint = "https://sqs.us-east-1.amazonaws.com/138302240075/keg-o-meter?Action=ReceiveMessage&Version=2012-11-05";
+            axios.get(messageEndpoint)
+                .then((response) => {
+                    const rawBody = response.data.ReceiveMessageResponse.ReceiveMessageResult.messages;
+                    if (rawBody) {
+                        const body = JSON.parse(rawBody[0].Body);
+                        console.log(body.subject);
+                        console.log(response);
+
+                        that.setState({
+                            isPouring1: !that.state.isPouring1,
+                            isPouring2: !that.state.isPouring2
+                        });
+                    }
+                });
+        }, 100);
     },
 
     componentWillUnmount() {
