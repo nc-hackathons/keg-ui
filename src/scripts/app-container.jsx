@@ -6,7 +6,7 @@ const AppContainer = React.createClass({
         return ({
             remValue1: 20,
             remValue2: 50,
-            isPouring1: true,
+            isPouring1: false,
             isPouring2: false,
             totalValue1: 100,
             totalValue2: 100
@@ -35,12 +35,13 @@ const AppContainer = React.createClass({
             <div className="app-wrapper container">
                 <div className="title row center-align">
 
-                    <div className="col s2 offset-s3 logo">
-                        <img className="responsive-img" src="https://pbs.twimg.com/media/CD3-iUqWEAAVBxV.jpg:large"/>
-                    </div>
-                    <div className="col s4 titleText">
-                        <div className="companyName">NC</div>
-                        <div className="heading">Keg-o-meter</div>
+
+                    <div className="col s4 offset-s4 titleText">
+                        <div className="companyName">NextCapital</div>
+                        <div className="heading">
+                            <i className="titleIcon fa fa-beer"></i>
+                            Keg-o-meter
+                        </div>
                     </div>
                 </div>
                 <div className="row">

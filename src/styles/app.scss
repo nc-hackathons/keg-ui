@@ -1,3 +1,12 @@
+html {
+  background: url("http://danishcrm.com/wp-content/uploads/2015/03/since_style_4k__texture__grey_background_by_giozaga-d81xamd.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -6,16 +15,37 @@ body {
 }
 
 .gaugeContainer {
-  //border: 1px solid #DDDDDD;
+  text-align: center;
   position: relative;
   img{
     width: 300px;
   }
   .gauge {
     position: absolute;
-    left: 96px;
+    left: 50%;
+    transform: translate(-50%, 0);
     top: 30px;
     z-index: 1000;
   }
 
+}
+.title{
+  margin-top: 30px;
+}
+.companyName{
+  font-family: 'Quicksand', sans-serif;
+
+  font-size: 1.5em;
+}
+
+.heading{
+  font-family: 'Signika', sans-serif;
+
+  font-size: 2.5em;
+
+}
+
+.titleIcon{
+  color: indianred;
+  margin-right: 10px;
 }

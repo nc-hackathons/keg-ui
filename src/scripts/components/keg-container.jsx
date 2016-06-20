@@ -21,11 +21,11 @@ const KegContainer = React.createClass({
         return (
             <div className="kegContainer col s6">
                 <div className="row">
-                    <div className="kegGuage col s3">
+                    <div className="kegGuage col s12">
                         <KegGauge gaugeValue={gaugePercentage} gaugeID = {this.props.gaugeID} isPouring = {this.props.isPouring}/>
                     </div>
-                    <div className="stats col s3">
-                        <div className = "card"> blah blah </div>
+                    <div className="stats col s12">
+                        <div className = "card-panel grey lighten-2 light"> This card shall eventually display statistical/current information about the keg.</div>
                     </div>
                 </div>
             </div>

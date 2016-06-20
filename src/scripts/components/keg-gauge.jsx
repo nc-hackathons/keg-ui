@@ -18,7 +18,7 @@ const KegGuage = React.createClass({
             waveTextColor: "#ffdb4d", // The color of the value text when the wave overlaps it.
             waveColor: "#ffe680",
             textVertPosition: 0.8,
-            waveAnimateTime: 4000,
+            waveAnimateTime: 4500,
             waveHeight: 0.3,
             waveCount: 1,
             waveRise: false,
@@ -35,7 +35,7 @@ const KegGuage = React.createClass({
             d3.select("#" + this.props.gaugeID).html("");
             let newConfig = _.clone(this.config);
             newConfig.waveColor = "#ff3333";
-            newConfig.waveAnimateTime = 700;
+            newConfig.waveAnimateTime = 1000;
             this.gauge = loadLiquidFillGauge(this.props.gaugeID, this.props.gaugeValue, newConfig);
         }
         else{
@@ -49,8 +49,8 @@ const KegGuage = React.createClass({
     render() {
         return (
             <div className="gaugeContainer">
-                <img src={"./../../media/keg.png"}/>
-                <svg className="gauge" id={this.props.gaugeID} width="150%" height="250"></svg>
+                <img className ="responsive-img" src={"./../../media/keg.png"}/>
+                <svg className="gauge" id={this.props.gaugeID} width="120px" height="250"></svg>
             </div>
         );
     }
