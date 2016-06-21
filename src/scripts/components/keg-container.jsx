@@ -25,7 +25,11 @@ const KegContainer = React.createClass({
                         <KegGauge gaugeValue={gaugePercentage} gaugeID = {this.props.gaugeID} isPouring = {this.props.isPouring}/>
                     </div>
                     <div className="stats col s12">
-                        <div className = "card-panel grey lighten-2 light"> This card shall eventually display statistical/current information about the keg.</div>
+                      <div className = "card-panel grey lighten-2 light">
+                        <strong>Beer Name: { _.join(_.words(this.props.beer.name).map((word) => _.capitalize(word)), ' ') }</strong><br />
+                        <strong>Remaining Volume: { this.props.remValue.toFixed(2) } ml</strong><br />
+                        <strong>Total Volume: { this.props.totalValue.toFixed(2) } ml</strong>
+                      </div>
                     </div>
                 </div>
             </div>

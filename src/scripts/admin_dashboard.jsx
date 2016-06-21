@@ -119,7 +119,7 @@ const BeerList = React.createClass({
   },
 
   loadDataFromServer : function() {
-    axios.get('http://10.5.50.138:4567/beers').then( function (response) {
+    axios.get('http://keg.blc-hq.com:5000/beers').then( function (response) {
       this.setState({data: response});
     }).catch( function (response) {
       console.log(response);
