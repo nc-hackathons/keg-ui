@@ -5,6 +5,27 @@ const axios = require('axios');
 
 const AppContainer = React.createClass({
     getInitialState() {
+        const socket = io.connect('http://keg.blc-hq.com:5000');
+        socket.on('pour_event', (data) => {
+            const keg = data.keg;
+            const tapPosition = data.tap_position;
+
+            let state = this.state;
+            if (tapPosition === 'OFF') {
+              ApiKeg.loadAll().then((kegs) => {
+                  state = {
+                      remValue1: kegs[0].batch.volume_remaining,
+                      remValue2: kegs[1].batch.volume_remaining
+                  }
+                  state[`isPouring${keg}`] = false;
+                  this.setState(state);
+              });
+            } else {
+                state[`isPouring${keg}`] = true;
+                this.setState(state);
+            }
+        });
+
         return ({
             beer1: {},
             beer2: {},
@@ -36,43 +57,6 @@ const AppContainer = React.createClass({
             });
         });
 
-        this.intervalID = setInterval(() => {
-            const that = this
-            const messageEndpoint = "https://sqs.us-east-1.amazonaws.com/138302240075/keg-o-meter?Action=ReceiveMessage&Version=2012-11-05";
-            axios.get(messageEndpoint)
-                .then((response) => {
-                    const rawBody = response.data.ReceiveMessageResponse.ReceiveMessageResult.messages;
-                    //if (rawBody) {
-                    if (true) {
-                        //const body = JSON.parse(rawBody[0].Body);
-//                       console.log(body.subject);
-//                       console.log(response);
-
-                        // tapPosition = body.tapPosition
-                        // tapNumber = body.tapNumber
-                        const tapNumber = 1;
-                        //if (body.tapPosition === 'OFF') {// ON or OFF
-                        let state;
-                        if (true) {
-                          ApiKeg.loadAll().then((kegs) => {
-                              const totalVolume1 = kegs[0].total_volume;
-                              const totalVolume2 = kegs[1].total_volume;
-
-                              state = {
-                                  remValue1: kegs[0].batch.volume_remaining,
-                                  remValue2: kegs[1].batch.volume_remaining
-                              }
-                              state[`isPouring${tapNumber}`] = true;
-                              that.setState(state);
-                          });
-                        } else {
-                            state[`isPouring${tapNumber}`] = true;
-                            that.setState(state);
-                        }
-
-                    }
-            });
-        }, 1000);
     },
 
     componentWillUnmount() {

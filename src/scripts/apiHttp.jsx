@@ -7,12 +7,12 @@ class apiHttp {
 
   static get(route) {
     return axios.get(`${ENDPOINT}/${route}`).then(({ data }) => {
-      console.log(data);
+// console.log(data);
        return data;
     }).catch(() => {
       console.log('oops');
     });
-    console.log(response);
+// console.log(response);
   }
 };
 
